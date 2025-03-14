@@ -1,0 +1,29 @@
+import axios from "config/axios.customize";
+
+// user
+export const callLogin = ({ email, password }) => {
+    return axios.post(`/api/users/login`, {
+        email,
+        password,
+    });
+};
+
+export const callLogout = () => {
+    return axios.get(`/api/users/logout`);
+};
+
+export const callGetUsers = () => {
+    return axios.get(`/api/users`)
+}
+
+export const callUpdateUser = (data) => {
+    return axios.post(`/api/users/update`, { ...data })
+}
+
+export const callCreateUser = (data) => {
+    return axios.post(`/api/users/create`, { ...data })
+}
+
+export const callDeleteUser = (_id) => {
+    return axios.delete(`/api/users/delete/${_id}`)
+}
