@@ -23,8 +23,8 @@ export const callGetUsers = () => {
     return axios.get(`/api/users`)
 }
 
-export const callUpdateUser = (data) => {
-    return axios.post(`/api/users/update`, { ...data })
+export const callUpdateUser = (id, data) => {
+    return axios.put(`/api/users/${id}`, { ...data })
 }
 
 export const callCreateUser = (data) => {
