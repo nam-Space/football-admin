@@ -11,6 +11,7 @@ import { UserContext } from "utils/UserContext";
 import { useNavigate } from "react-router-dom";
 import { callLogout } from "config/api";
 import useLogoutUser from "hooks/useLogoutUser";
+import { getUserAvatar } from "utils/imageUrl";
 
 const { Header } = Layout;
 
@@ -109,7 +110,7 @@ const HeaderClient = ({ collapsed, setCollapsed }) => {
                         onOpenChange={(val) => setOpenPopoverUser(val)}
                     >
                         <div className={"flex items-center"}>
-                            <Avatar>{getFirstCharOfLastWord(user.name)}</Avatar>
+                            <Avatar src={getUserAvatar(user.avatar)}></Avatar>
                             <div className={"ml-[8px]"}>
                                 <p className={"font-bold leading-normal"}>
                                     {user.name}

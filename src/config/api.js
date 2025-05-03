@@ -8,6 +8,13 @@ export const callLogin = ({ email, password }) => {
     });
 };
 
+export const callLoginAdmin = ({ email, password }) => {
+    return axios.post(`/api/users/login-admin`, {
+        email,
+        password,
+    });
+};
+
 export const callLogout = () => {
     return axios.get(`/api/users/logout`);
 };

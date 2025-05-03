@@ -2,9 +2,9 @@ import { Button, Divider, Form, Input, message, notification } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import styles from "styles/auth.module.scss";
-import { callLogin } from "config/api";
 import { UserContext } from "utils/UserContext";
 import _ from "lodash";
+import { callLoginAdmin } from "config/api";
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -25,7 +25,8 @@ const Login = (props) => {
         const { email, password } = values;
         setIsSubmit(true);
         try {
-            const res = await callLogin({ email, password });
+            const res = await callLoginAdmin({ email, password });
+            console.log("res", res);
             setIsSubmit(false);
             localStorage.setItem("currentUser", JSON.stringify(res.data));
             setUser(res.data);
