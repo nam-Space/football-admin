@@ -1,4 +1,4 @@
-import { Button, message, notification, Popconfirm, Space } from "antd";
+import { Avatar, Button, message, notification, Popconfirm, Space } from "antd";
 import React, { useContext, useRef, useState } from "react";
 import DataTable from "utils/DataTable";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
@@ -6,6 +6,7 @@ import useGetUsers from "hooks/useGetUsers";
 import { callDeleteUser } from "config/api";
 import { UserContext } from "utils/UserContext";
 import ModalUser from "./ModelUser";
+import { getUserAvatar } from "utils/imageUrl";
 
 const User = () => {
     const tableRef = useRef();
@@ -43,6 +44,26 @@ const User = () => {
             hideInSearch: true,
         },
         {
+            title: "Avatar",
+            dataIndex: "avatar",
+            width: 250,
+            render: (text, record, index, action) => {
+                return (
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 3,
+                        }}
+                    >
+                        <Avatar src={getUserAvatar(record.avatar)} />
+                        <p>{record.name}</p>
+                    </div>
+                );
+            },
+            hideInSearch: true,
+        },
+        {
             title: "Name",
             dataIndex: "name",
             hideInSearch: true,
@@ -61,6 +82,31 @@ const User = () => {
             title: "Role",
             dataIndex: "role",
             hideInSearch: true,
+        },
+        {
+            title: "Favourite Team",
+            dataIndex: "favouriteTeam",
+            hideInSearch: true,
+            render: (text, record, index, action) => {
+                return (
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 3,
+                        }}
+                    >
+                        {record.team ? (
+                            <>
+                                <Avatar src={record.team.crest}></Avatar>
+                                <p>{record.team.shortName}</p>
+                            </>
+                        ) : (
+                            <p>-</p>
+                        )}
+                    </div>
+                );
+            },
         },
         {
             title: "Actions",
