@@ -37,7 +37,7 @@ const ModalUser = (props) => {
                     role,
                 };
 
-                const res = await callUpdateUser(userForm);
+                const res = await callUpdateUser(dataInit._id, userForm);
                 message.success("Cập nhật user thành công");
                 handleReset();
                 reloadTable();
